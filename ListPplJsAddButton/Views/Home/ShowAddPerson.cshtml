@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ShowAddPerson";
+}
+
+<h2>ShowAddPerson</h2>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+        <form method="post" action="/home/addperson">
+            <div class="row" id="additional-ppl">
+                <div class="col-md-4" >
+                    <input type="text" placeholder="First Name" name="people[0].firstname" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" placeholder="Last Name" name="people[0].lastname" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" placeholder="Age" name="people[0].age" class="form-control" />
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+        <button id="add-another" class="btn btn-danger">Add Another Person</button>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/Index.js"></script>
+}

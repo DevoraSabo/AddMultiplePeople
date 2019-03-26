@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ListPplJsAddButton.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +11,28 @@ namespace ListPplJsAddButton.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            PersonManager mgr = new PersonManager(Properties.Settings.Default.ConStr);
+            IEnumerable<Person> ppl = mgr.GetPeople();
+            return View(ppl);
         }
 
-        public ActionResult About()
+        public ActionResult ShowAddPerson()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult AddPerson(List<Person> People)
         {
-            ViewBag.Message = "Your contact page.";
+            PersonManager mgr = new PersonManager(Properties.Settings.Default.ConStr);
+            foreach (Person p in People)
+            {
+                mgr.AddPerson(p);
+            }
 
-            return View();
+            return Redirect("/Home/Index");
         }
+
+
     }
 }
